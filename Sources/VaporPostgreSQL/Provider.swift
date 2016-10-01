@@ -100,12 +100,12 @@ public final class Provider: Vapor.Provider {
     }
 
     /**
-    - host: May be either a host name or an IP address. Default is "localhost".
-    - port: Port number for the TCP/IP connection. Default is 5432. Can't be 0.
-    - dbname: Name of PostgreSQL database.
-    - user: Login ID of the PostgreSQL user.
-    - password: Password for user.
-    - throws: `Error.cannotEstablishConnection` if the call to connection fails.
+        - host: May be either a host name or an IP address. Default is "localhost".
+        - port: Port number for the TCP/IP connection. Default is 5432. Can't be 0.
+        - dbname: Name of PostgreSQL database.
+        - user: Login ID of the PostgreSQL user.
+        - password: Password for user.
+        - throws: `Error.cannotEstablishConnection` if the call to connection fails.
     */
     public init(
         host: String = "localhost",
