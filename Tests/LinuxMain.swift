@@ -4,7 +4,7 @@ import XCTest
 @testable import VaporPostgreSQLTests
 
 XCTMain([
-    testCase(PostgreSQLTests.allTests),
+    testCase(VaporPostgreSQL.allTests),
 ])
 
 #endif
