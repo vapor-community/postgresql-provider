@@ -23,20 +23,13 @@ public final class Provider: Vapor.Provider {
 
         The file should contain similar JSON:
 
-            {
-                "host": "127.0.0.1",
-                "user": "postgres",
-                "password": "",
-                "database": "test",
-                "port": 5432, // optional
-            }
-
-        Optionally include a url instead:
-
-            {
-                "url": "psql://user:pass@host:5432/database"
-            }
-
+        {
+            "host": "127.0.0.1", // optional
+            "user": "postgres",
+            "password": "",
+            "database": "test",
+            "port": 5432 // optional
+        }
     */
     public convenience init(config: Config) throws {
         guard let postgresql = config["postgresql"]?.object else {
@@ -65,8 +58,8 @@ public final class Provider: Vapor.Provider {
             let port = postgresql["port"]?.int
 
             try self.init(
-                host: host,
-                port: port!,
+                host: host ?? "localhost",
+                port: port ?? 5432,
                 dbname: dbname,
                 user: user,
                 password: password
@@ -74,6 +67,12 @@ public final class Provider: Vapor.Provider {
         }
     }
 
+    /**
+        Creates a PostgreSQL provider from a URL.
+
+        "psql://user:pass@host:5432/database"
+
+    */
     public convenience init(url: String) throws {
         let uri = try URI(url)
         guard
@@ -92,7 +91,7 @@ public final class Provider: Vapor.Provider {
 
         try self.init(
             host: uri.host,
-            port: port!,
+            port: port ?? 5432,
             dbname: dbname,
             user: user,
             password: password
