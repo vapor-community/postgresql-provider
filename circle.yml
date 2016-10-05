@@ -1,0 +1,7 @@
+dependencies:
+  pre:
+    - createdb test
+
+test:
+  override:
+    - eval "$(curl -sL swift.vapor.sh/ci)"

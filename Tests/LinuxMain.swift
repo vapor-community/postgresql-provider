@@ -1,10 +1,10 @@
 #if os(Linux)
 
 import XCTest
-@testable import PostgreSQLTestSuite
+@testable import VaporPostgreSQLTests
 
 XCTMain([
-    testCase(PostgreSQLTests.allTests),
+    testCase(VaporPostgreSQL.allTests),
 ])
 
 #endif
