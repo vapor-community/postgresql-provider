@@ -39,10 +39,6 @@ public final class Provider: Vapor.Provider {
         if let url = postgresql["url"]?.string {
             try self.init(url: url)
         } else {
-            guard let host = postgresql["host"]?.string else {
-                throw Error.missingConfig("host")
-            }
-
             guard let user = postgresql["user"]?.string else {
                 throw Error.missingConfig("user")
             }
@@ -55,6 +51,7 @@ public final class Provider: Vapor.Provider {
                 throw Error.missingConfig("database")
             }
 
+            let host = postgresql["host"]?.string
             let port = postgresql["port"]?.int
 
             try self.init(
