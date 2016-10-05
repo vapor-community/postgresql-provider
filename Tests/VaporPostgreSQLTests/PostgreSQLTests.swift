@@ -1,15 +1,59 @@
 import XCTest
-@testable import VaporPostgreSQL
 import Fluent
+import Node
+import Settings
+@testable import VaporPostgreSQL
 
 
 class VaporPostgreSQL: XCTestCase {
     static let allTests = [
+       ("testFileConfig", testFileConfig),
+       ("testFileConfigWithoutPortOrHost", testFileConfigWithoutPortOrHost),
         ("testURLConfig", testURLConfig),
         ("testURLConfigWithoutport", testURLConfigWithoutport),
         ("testConfigWithAllOptions", testConfigWithAllOptions),
         ("testConfigWithNoOptions", testConfigWithNoOptions)
     ]
+
+    func testFileConfig() throws {
+        let fullConfig: Node = [
+            "postgresql": [
+                "host": "127.0.0.1",
+                "user": "postgres",
+                "password": "",
+                "database": "test",
+                "port": 5432
+            ]
+        ]
+
+        do {
+            let config = Config(fullConfig)
+            let postgresql = try Provider.init(config: config)
+            print("Database config parsed successfully")
+            XCTAssertNotNil(postgresql.driver.database)
+        } catch {
+            XCTFail("Could not parse config: \(error)")
+        }
+    }
+
+    func testFileConfigWithoutPortOrHost() {
+        let fullConfig: Node = [
+            "postgresql": [
+                "user": "postgres",
+                "password": "",
+                "database": "test",
+            ]
+        ]
+
+        do {
+            let config = Config(fullConfig)
+            let postgresql = try Provider.init(config: config)
+            print("Database config parsed successfully")
+            XCTAssertNotNil(postgresql.driver.database)
+        } catch {
+            XCTFail("Could not parse config: \(error)")
+        }
+    }
 
     func testURLConfig() throws {
         do {
