@@ -6,7 +6,6 @@ import FluentPostgreSQL
 public typealias PostgreSQLDriver = FluentPostgreSQL.PostgreSQLDriver
 
 public final class Provider: Vapor.Provider {
-    public let provided: Providable
 
     public enum Error: Swift.Error {
         case noPostgreSQLConfig
@@ -17,6 +16,13 @@ public final class Provider: Vapor.Provider {
         PostgreSQL database driver created by the provider.
     */
     public let driver: PostgreSQLDriver
+
+    public var provided: Providable {
+        print("[DEPRECATED] `provided` is deprecated and will not be available in future versions.")
+        return Providable(database: database)
+    }
+
+    private var database: Database
 
     /**
         Creates a PostgreSQL provider from a `postgresql.json` config file.
@@ -119,9 +125,14 @@ public final class Provider: Vapor.Provider {
         )
 
         self.driver = driver
+        self.database = Database(driver)
+    }
 
-        let database = Database(driver)
-        provided = Providable(database: database)
+    public func boot(_ drop: Droplet) {
+        if let existing = drop.database {
+            print("VaporPostgreSQL will overwrite existing database: \(type(of: existing))")
+        }
+        drop.database = database
     }
 
     /**
