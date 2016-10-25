@@ -2,6 +2,7 @@ import XCTest
 import Fluent
 import Node
 import Settings
+import Vapor
 @testable import VaporPostgreSQL
 
 
@@ -37,7 +38,7 @@ class VaporPostgreSQL: XCTestCase {
     }
 
     func testFileConfigWithoutPortOrHost() {
-        let fullConfig: Node = [
+        let partialConfig: Node = [
             "postgresql": [
                 "user": "postgres",
                 "password": "",
@@ -46,7 +47,7 @@ class VaporPostgreSQL: XCTestCase {
         ]
 
         do {
-            let config = Config(fullConfig)
+            let config = Config(partialConfig)
             let postgresql = try Provider.init(config: config)
             print("Database config parsed successfully")
             XCTAssertNotNil(postgresql.driver.database)
@@ -94,4 +95,16 @@ class VaporPostgreSQL: XCTestCase {
             XCTFail("Could not parse url: \(error)")
         }
     }
+
+    func testBoot() throws {
+        do {
+            let drop = Droplet()
+            let postgresql = try Provider.init(url: "psql://user:pass@host:5432/database")
+            postgresql.boot(drop)
+            XCTAssertNotNil(drop.database)
+        } catch {
+            XCTFail("Could prepare database: \(error)")
+        }
+    }
+
 }
