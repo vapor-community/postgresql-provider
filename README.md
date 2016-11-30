@@ -8,7 +8,8 @@ Adds PostgreSQL support to the Vapor web framework.
 import Vapor
 import VaporPostgreSQL
 
-let drop = Droplet(providers: [VaporPostgreSQL.Provider.self])
+let drop = Droplet()
+try drop.addProvider(VaporPostgreSQL.Provider.self)
 ```
 
 ## Config
