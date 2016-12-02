@@ -1,3 +1,5 @@
+![Travis Build](https://travis-ci.org/vapor/postgresql-provider.svg?branch=master)
+
 # PostgreSQL Provider for Vapor
 
 Adds PostgreSQL support to the Vapor web framework.
