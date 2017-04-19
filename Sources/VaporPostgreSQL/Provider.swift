@@ -25,7 +25,7 @@ public final class Provider: Vapor.Provider {
 
     public convenience init(config: Config) throws {
         guard let postgresql = config["postgresql"]?.object else {
-            throw ConfigError.missingFile("No `postgresql.json` config file found")
+            throw ConfigError.missingFile("postgresql")
         }
 
         if let url = postgresql["url"]?.string {
