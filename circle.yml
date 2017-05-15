@@ -4,7 +4,7 @@ machine:
 dependencies:
   override:
     - eval "$(curl -sL https://apt.vapor.sh)"
-    - sudo apt-get install vapor cpostgresql
+    - sudo apt-get install vapor postgresql postgresql-contrib
     - sudo chmod -R a+rx /usr/
 test:
   override:
