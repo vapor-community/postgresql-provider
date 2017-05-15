@@ -23,9 +23,6 @@ class VaporPostgreSQL: XCTestCase {
         
         XCTAssertNotNil(database)
         XCTAssertEqual(database.threadConnectionPool.maxConnections, 1337)
-        // let result = try database.raw("SELECT version()")
-        //
-        // XCTAssert(result[0, "version"]?.string?.contains("9.") == true)
     }
 
     func testDifferentDriver() throws {
