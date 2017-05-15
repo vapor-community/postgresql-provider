@@ -1,7 +1,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "VaporPostgreSQL",
+    name: "PostgreSQLProvider",
     dependencies: [
         // PostgreSQL driver for Fluent
         .Package(url: "https://github.com/vapor/postgresql-driver.git", Version(2,0,0, prereleaseIdentifiers: ["beta"])),
