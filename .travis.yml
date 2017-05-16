@@ -12,7 +12,7 @@ matrix:
 before_install:
   - if [ $TRAVIS_OS_NAME = linux ]; then echo "deb https://repo.vapor.codes/apt $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vapor.list; fi
   - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get -qq update; fi
-  - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install -y vapor; fi
+  - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install -y vapor --force-yes; fi
 
 install:
     - "[ $TRAVIS_OS_NAME = osx ] && pg_ctl -D /usr/local/var/postgres start && sleep 3 || true"
