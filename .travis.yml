@@ -7,7 +7,7 @@ matrix:
       addons:
         postgresql: "9.5"
     - os: osx
-      osx_image: xcode8
+      osx_image: xcode8.3
 
 before_install:
   - if [ $TRAVIS_OS_NAME = linux ]; then echo "deb https://repo.vapor.codes/apt $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vapor.list; fi
