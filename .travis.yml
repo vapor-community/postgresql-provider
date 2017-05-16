@@ -5,7 +5,7 @@ matrix:
       dist: trusty
       sudo: required
       addons:
-          postgresql: "9.5"
+        postgresql: "9.5"
     - os: osx
       osx_image: xcode8
 
@@ -13,11 +13,14 @@ before_install:
   - if [ $TRAVIS_OS_NAME = linux ]; then echo "deb https://repo.vapor.codes/apt $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/vapor.list; fi
   - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get -qq update; fi
   - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install -y vapor --force-yes; fi
+  - if [ $TRAVIS_OS_NAME = osx ]; then brew tap vapor/homebrew-tap; brew update; fi
+  - if [ $TRAVIS_OS_NAME = osx ]; then brew update; fi
+  - if [ $TRAVIS_OS_NAME = osx ]; then brew install vapor;
 
 install:
-    - "[ $TRAVIS_OS_NAME = osx ] && pg_ctl -D /usr/local/var/postgres start && sleep 3 || true"
-    - "[ $TRAVIS_OS_NAME = osx ] && createuser -s postgres || true"
-    - psql -U postgres -c 'CREATE DATABASE test;'
+  - "[ $TRAVIS_OS_NAME = osx ] && pg_ctl -D /usr/local/var/postgres start && sleep 3 || true"
+  - "[ $TRAVIS_OS_NAME = osx ] && createuser -s postgres || true"
+  - psql -U postgres -c 'CREATE DATABASE test;'
 
 script:
   - eval "$(curl -sL swift.vapor.sh/ci)"
