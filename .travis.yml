@@ -15,7 +15,7 @@ before_install:
   - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install -y vapor --force-yes; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew tap vapor/homebrew-tap; brew update; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew update; fi
-  - if [ $TRAVIS_OS_NAME = osx ]; then brew install vapor;
+  - if [ $TRAVIS_OS_NAME = osx ]; then brew install vapor; fi
 
 install:
   - "[ $TRAVIS_OS_NAME = osx ] && pg_ctl -D /usr/local/var/postgres start && sleep 3 || true"
