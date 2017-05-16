@@ -1,11 +1,9 @@
 ![Travis Build](https://travis-ci.org/vapor/postgresql-provider.svg?branch=master)
 
 # PostgreSQL Provider for Vapor
-
 Adds PostgreSQL support to the Vapor web framework.
 
 ## Setup
-
 Add the dependency to Package.swift
 
 ```JSON
@@ -18,32 +16,65 @@ Add the dependency to Package.swift
 import Vapor
 import PostgreSQLProvider
 
-let drop = Droplet()
-try drop.addProvider(PostgreSQLProvider.Provider.self)
+let config = try Config()
+try config.addProvider(PostgreSQLProvider.Provider.self)
+
+let drop = try Droplet(config)
 ```
 
-## Config
+## Configure Fluent
+Once the provider is added to your Droplet, you can configure Fluent to use the PostgreSQL driver.
 
-To build, create a `postgresql.json` file in the `Config/secrets` folder.
-You may need to create the `secrets` folder if it does not exist. The `secrets`
-folder is in the .gitignore and shouldn't be committed.
+ `config/fluent.json`
+```json
+  "driver": "postgresql"
+```
 
-Here's an example `Config/secrets/postgresql.json`
+## Configure PostgreSQL
+### Basic
+Here is an example of a simple PostgreSQL configuration file.
 
+ `config/secrets/postgresql.json`
 ```json
 {
     "hostname": "127.0.0.1",
     "user": "postgres",
-    "password": "",
+    "password": "hello",
     "database": "test",
     "port": 5432
 }
 ```
 
-Or, just set a url.
+Alternatively, you can set a url with the configuration parameters.
 
+ `config/secrets/postgresql.json`
 ```json
 {
     "url": "psql://user:pass@hostname:5432/database"
 }
+```
+
+### Read Replicas
+Read replicas can be supplied by passing a single `master` hostname and an array of `readReplicas` hostnames.
+
+ `config/secrets/postgresql.json`
+```json
+{
+    "master": "master.postgresql.foo.com",
+    "readReplicas": ["read01.postgresql.foo.com", "read02.postgresql.foo.com"],
+    "user": "postgres",
+    "password": "hello",
+    "database": "test",
+    "port": 5432
+}
+```
+
+### Driver¶
+You can get access to the PostgreSQL Driver on the droplet.
+
+```swift
+import Vapor
+import PostgreSQLProvider
+
+let postgresqlDriver = try drop.postgresql()
 ```
