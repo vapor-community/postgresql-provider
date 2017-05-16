@@ -18,8 +18,9 @@ before_install:
   - if [ $TRAVIS_OS_NAME = osx ]; then brew install vapor; fi
 
 install:
-  - "[ $TRAVIS_OS_NAME = osx ] && pg_ctl -D /usr/local/var/postgres start && sleep 3 || true"
-  - "[ $TRAVIS_OS_NAME = osx ] && createuser -s postgres || true"
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rm -rf /usr/local/var/postgres && initdb /usr/local/var/postgres -E utf8; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then pg_ctl -D /usr/local/var/postgres start && sleep 3 || true; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo -u travis createuser -s -p 5432 postgres; fi
   - psql -U postgres -c 'CREATE DATABASE test;'
 
 script:
