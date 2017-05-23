@@ -1,4 +1,4 @@
-![Travis Build](https://travis-ci.org/vapor/postgresql-provider.svg?branch=master)
+![Travis Build](https://travis-ci.org/vapor-community/postgresql-provider.svg?branch=master)
 
 # PostgreSQL Provider for Vapor
 Adds PostgreSQL support to the Vapor web framework.
@@ -69,7 +69,7 @@ Read replicas can be supplied by passing a single `master` hostname and an array
 }
 ```
 
-### Driver¶
+### Driver
 You can get access to the PostgreSQL Driver on the droplet.
 
 ```swift
