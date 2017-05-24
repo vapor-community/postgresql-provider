@@ -26,6 +26,7 @@ let drop = try Droplet(config)
 Once the provider is added to your Droplet, you can configure Fluent to use the PostgreSQL driver.
 
  `config/fluent.json`
+ 
 ```json
   "driver": "postgresql"
 ```
@@ -34,7 +35,8 @@ Once the provider is added to your Droplet, you can configure Fluent to use the 
 ### Basic
 Here is an example of a simple PostgreSQL configuration file.
 
- `config/secrets/postgresql.json`
+ `Config/secrets/postgresql.json`
+ 
 ```json
 {
     "hostname": "127.0.0.1",
@@ -47,7 +49,8 @@ Here is an example of a simple PostgreSQL configuration file.
 
 Alternatively, you can set a url with the configuration parameters.
 
- `config/secrets/postgresql.json`
+ `Config/secrets/postgresql.json`
+ 
 ```json
 {
     "url": "psql://user:pass@hostname:5432/database"
@@ -57,7 +60,8 @@ Alternatively, you can set a url with the configuration parameters.
 ### Read Replicas
 Read replicas can be supplied by passing a single `master` hostname and an array of `readReplicas` hostnames.
 
- `config/secrets/postgresql.json`
+ `Config/secrets/postgresql.json`
+ 
 ```json
 {
     "master": "master.postgresql.foo.com",
