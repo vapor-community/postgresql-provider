@@ -25,7 +25,7 @@ let drop = try Droplet(config)
 ## Configure Fluent
 Once the provider is added to your Droplet, you can configure Fluent to use the PostgreSQL driver.
 
- `config/fluent.json`
+ `Config/fluent.json`
  
 ```json
   "driver": "postgresql"
