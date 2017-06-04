@@ -7,7 +7,7 @@ Adds PostgreSQL support to the Vapor web framework.
 Add the dependency to Package.swift
 
 ```JSON
-.Package(url: "https://github.com/vapor/postgresql-provider.git", majorVersion: 2, minor: 0)
+.Package(url: "https://github.com/vapor-community/postgresql-provider.git", majorVersion: 2, minor: 0)
 ```
 
 ## Usage
