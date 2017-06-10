@@ -1,11 +1,12 @@
-machine:
-  services:
-    - postgresql
 dependencies:
   override:
     - eval "$(curl -sL https://apt.vapor.sh)"
-    - sudo apt-get install vapor postgresql postgresql-contrib
+    - sudo apt-get install vapor
     - sudo chmod -R a+rx /usr/
+
+  pre:
+    - sudo -u postgres createdb test
+
 test:
   override:
     - swift build
