@@ -1,4 +1,8 @@
-![Travis Build](https://travis-ci.org/vapor-community/postgresql-provider.svg?branch=master)
+[![Swift](https://img.shields.io/badge/swift-3.1_--_4.0-brightgreen.svg)](https://swift.org)
+[![Linux Build Status](https://img.shields.io/circleci/project/github/vapor-community/postgresql-provider.svg?label=Linux)](https://circleci.com/gh/vapor-community/postgresql-provider)
+[![macOS Build Status](https://img.shields.io/travis/vapor-community/postgresql-provider.svg?label=macOS)](https://travis-ci.org/vapor-community/postgresql-provider)
+[![codecov](https://codecov.io/gh/vapor-community/postgresql-provider/branch/master/graph/badge.svg)](https://codecov.io/gh/vapor-community/postgresql-provider)
+[![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
 # PostgreSQL Provider for Vapor
 Adds PostgreSQL support to the Vapor web framework.
