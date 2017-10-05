@@ -7,6 +7,11 @@
 # PostgreSQL Provider for Vapor
 Adds PostgreSQL support to the Vapor web framework.
 
+## Prerequisites
+
+The PostgreSQL C driver must be installed in order to use this package.  
+Follow the [README of the cpostgresql repo](https://github.com/vapor-community/cpostgresql/blob/master/README.md) to get started.
+
 ## Setup
 Add the dependency to Package.swift
 
