@@ -16,38 +16,21 @@ Follow the [README of the cpostgresql repo](https://github.com/vapor-community/c
 Note that the process is different for Swift 3 and 4.
 
 1. Add the dependency to project
+    - Swift 3: add to Package.swift package dependencies
+        ```swift
+        .Package(url: "https://github.com/vapor-community/postgresql-provider.git", majorVersion: 2, minor: 1)
+        ```
+    - Swift 4: add to Package.swift package _and target_ dependencies
+        ```swift
+        .package(url: "https://github.com/vapor-community/postgresql-provider.git", .upToNextMajor(from: "2.1.0"))
+        // ...
+        .target(name: "App", dependencies: ["Vapor", "FluentProvider", "PostgreSQLProvider"], ...)
+        ```
 
-Swift 3:
-Add to Package.swift package dependencies
-```swift
-.Package(url: "https://github.com/vapor-community/postgresql-provider.git", majorVersion: 2, minor: 1)
-```
-
-Swift 4:
-Add to Package.swift _package_ dependencies
-```swift
-.package(url: "https://github.com/vapor-community/postgresql-provider.git", .upToNextMajor(from: "2.1.0"))
-```
-
-Add to Package.swift _target_ dependencies
-```swift
-.target(name: "App", dependencies: ["Vapor", "FluentProvider", "PostgreSQLProvider"],
-                exclude: [
-                    // ... any exclusions ...
-                ]),
-```
-
-2. Build dependencies
-At the Termninal prompt
-```bash
-vapor build
-```
-
-3. Optionally rebuild the Xcode project
-At the Terminal prompt
-```bash
-vapor xcode
-```
+2. Fetch dependencies and regenerate the Xcode project
+    ```bash
+    vapor update
+    ```
 
 ## Usage
 
