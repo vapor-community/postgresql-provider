@@ -13,17 +13,40 @@ The PostgreSQL C driver must be installed in order to use this package.
 Follow the [README of the cpostgresql repo](https://github.com/vapor-community/cpostgresql/blob/master/README.md) to get started.
 
 ## Setup
-Add the dependency to Package.swift.
-Note that the syntax is different for Swift 3 and 4.
+Note that the process is different for Swift 3 and 4.
+
+1. Add the dependency to project
 
 Swift 3:
+Add to Package.swift package dependencies
 ```swift
 .Package(url: "https://github.com/vapor-community/postgresql-provider.git", majorVersion: 2, minor: 1)
 ```
 
 Swift 4:
+Add to Package.swift _package_ dependencies
 ```swift
 .package(url: "https://github.com/vapor-community/postgresql-provider.git", .upToNextMajor(from: "2.1.0"))
+```
+
+Add to Package.swift _target_ dependencies
+```swift
+.target(name: "App", dependencies: ["Vapor", "FluentProvider", "PostgreSQLProvider"],
+                exclude: [
+                    // ... any exclusions ...
+                ]),
+```
+
+2. Build dependencies
+At the Termninal prompt
+```bash
+vapor build
+```
+
+3. Optionally rebuild the Xcode project
+At the Terminal prompt
+```bash
+vapor xcode
 ```
 
 ## Usage
